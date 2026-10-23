@@ -29,3 +29,10 @@
 - CI 通過安裝、8 項互動測試、建置、Wrangler 發布及正式 API／全部 33 檔內容雜湊驗證；失敗會使 workflow 標紅。
 - docs-only 驗證使用本輪真正的 README／部署紀錄／B 路線評估文件更新，不製造空 commit 或人工喚醒。
 - 舊首次手動上線段落中的「未建立 GitHub 自動部署」只描述當時狀態，現已由本節取代；手動部署保留為必要維護手段。
+
+
+## 2026-10-23 正式 B 入口切換（已驗證）
+
+官網正式遊戲：https://k-hunting-log.icareu.tw/journey/ 。正式入口僅有 B 版棲地觀測，不含 A/C 選單。遊戲功能與週結擴站資料集中於 `mkhsu2002/neobabylon-0`；本 repo 首頁以 canonical 與即時導向進入該正式頁。歷史 A/B/C 檔案保留公開路由，不再由首頁推廣。
+
+來源 commit `16b265907a6528938df92d261f0de9cd7a35864a` 已推 main，8 項測試與 build 通過；[GitHub Actions run 40016333041](https://github.com/mkhsu2002/k-journey/actions/runs/40016333041) 為 completed/success，正式首頁回讀已無三版選單，canonical／轉向均為官網 journey。官網的完整 12 站、60 卡、72 圖 SHA-256、132 個正典連結與發布證據保存於官網 repo `docs/journey-release-2026-10-23.json`。
