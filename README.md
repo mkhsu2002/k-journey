@@ -6,7 +6,7 @@
 
 ## 試玩入口
 
-預定 GitHub Pages 網址：https://mkhsu2002.github.io/k-journey/ 。需完成下方 Pages 設定後才會上線；原始碼提交成功不等於部署成功。
+Cloudflare Pages 正式網址：https://k-journey.pages.dev/ 。
 
 | 檔案 | 內容 | 適合驗證 |
 | :--- | :--- | :--- |
@@ -69,19 +69,20 @@ npm test
 
 檢查未發現 PHP、伺服器執行碼、外部 API 請求或原始碼中的憑證；網站不處理登入或個資表單。這是本次程式碼檢視結果，不等於滲透測試或零風險保證。
 
-## 部署：GitHub Pages
+## 部署：Cloudflare Pages
 
-此專案選用 GitHub Pages 的分支發布，無須另設 Cloudflare 帳號、build command 或自訂 CI 工作流程。
+2026-10-23 改採 Cloudflare Pages Direct Upload；正式專案為 `k-journey`，production branch 為 `main`，網址為 https://k-journey.pages.dev/ 。原 GitHub Pages 設定說明已停用，不代表已在 GitHub 啟用或關閉 Pages。
 
-1. 在本 repository 的 Settings → Pages 開啟部署設定。
-2. Source 選 `Deploy from a branch`。
-3. Branch 選 `main`，資料夾選 `/ (root)`，按 Save。
-4. 等待 GitHub 內建 Pages 建置完成，使用設定頁顯示的正式網址驗證。
-5. 檢查入口、三頁、素材 HTTP 狀態及 A 明信片下載；B/C 確認直接進入正確演示。
+```sh
+npm ci
+npm test
+npm run build
+npx wrangler pages deploy dist --project-name k-journey --branch main
+```
 
-往後推送 `main`，GitHub 會重新發布。站內使用相對路徑，可放在 `/k-journey/` 子目錄。不要只上傳 HTML 而漏掉 `assets/`。不需要把 `node_modules/` 當作網站素材上傳。
+部署憑證應由 macOS Keychain 或部署平台安全儲存按需注入，不得寫入 repository。`scripts/build.cjs` 只將四個 HTML 與 `assets/` 複製到 `dist/`，不會公開 README、測試、開發依賴或部署設定。此站沒有後端、環境變數、資料庫或 migration。
 
-Cloudflare Pages 可作替代方案：上傳四個 HTML、`assets/` 與 `.nojekyll` 即可，不需執行建置。若改用 Cloudflare，請另外設定來源分支、快取及自訂網域，並重新驗證實際網址。
+目前使用本機直接部署，推送 GitHub 不會自動更新 Cloudflare。後續內容修改須通過測試、推送 main，再執行部署並確認 Cloudflare 部署成功；核對首頁、三頁、全部素材內容雜湊、影音 Content-Type 及 Range 請求。實機影音及明信片下載仍須人工測試。
 
 ## 下一步建議
 
