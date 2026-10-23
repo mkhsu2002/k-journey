@@ -27,7 +27,7 @@ version-c.html
 assets/               共用 JPG、MP4、MP3，依內容雜湊命名
 tests/journey.test.cjs 互動回歸與本地連結檢查
 package.json          僅提供開發測試指令
-.nojekyll             GitHub Pages 直接提供靜態檔案
+.nojekyll             保留的 GitHub Pages 相容檔，不納入 Cloudflare 輸出
 ```
 
 正式網站不需要 Node.js、npm、建置工具、API key 或資料庫。Google Fonts 是唯一外部字型依賴，無法連線時使用系統字型；遊戲媒體皆來自本站。這不是可直接離線使用的 PWA，也不再是內嵌素材的獨立單檔，移動時須保留 `assets/`。
@@ -83,6 +83,8 @@ npx wrangler pages deploy dist --project-name k-journey --branch main
 部署憑證應由 macOS Keychain 或部署平台安全儲存按需注入，不得寫入 repository。`scripts/build.cjs` 只將四個 HTML 與 `assets/` 複製到 `dist/`，不會公開 README、測試、開發依賴或部署設定。此站沒有後端、環境變數、資料庫或 migration。
 
 目前使用本機直接部署，推送 GitHub 不會自動更新 Cloudflare。後續內容修改須通過測試、推送 main，再執行部署並確認 Cloudflare 部署成功；核對首頁、三頁、全部素材內容雜湊、影音 Content-Type 及 Range 請求。實機影音及明信片下載仍須人工測試。
+
+本次正式部署與驗證結果見 [部署紀錄](docs/deployment.md)。
 
 ## 下一步建議
 
