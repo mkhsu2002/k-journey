@@ -6,11 +6,13 @@
 
 ## 試玩入口
 
+正式 B 版已整合至 [K 的狩獵日誌・棲地觀測](https://k-hunting-log.icareu.tw/journey/)。本 repo 首頁直接導向正式 B 主畫面；以下 A/B/C 檔案僅保留歷史試玩路由，並非正式遊戲選單。正式遊戲程式、週結擴站與資料契約集中由 `mkhsu2002/neobabylon-0` 管理。
+
 Cloudflare Pages 正式網址：https://k-journey.pages.dev/ 。
 
 | 檔案 | 內容 | 適合驗證 |
 | :--- | :--- | :--- |
-| `index.html` | 三版導覽與進度說明 | 手機入口與版本選擇 |
+| `index.html` | 導向官網正式 B 版 | 單一棲地觀測入口 |
 | `version-a.html` | 獨立 A 版：航圖、抵達、影片熱點、五物種圖鑑、明信片翻面與 PNG 下載 | 最完整的單站探索收藏流程 |
 | `version-b.html#b` | 企劃記錄與 A/B/C 輕量演示；B 用靜圖漂移模擬活景，並非即時串流 | 頻道、色調、觀察卡與陪伴感 |
 | `version-c.html#c` | 含真影片的 A/B/C 整合頁；C 為方與 K 的對話、選項及四拍調律 | 故事推進與節律互動 |
@@ -92,7 +94,7 @@ GitHub Actions Secrets 使用 `CLOUDFLARE_ACCOUNT_ID` 與 `CLOUDFLARE_API_TOKEN`
 
 ## B 路線整合方向
 
-後續正式遊戲採 B 版棲地觀測方向。建議內建至 K 的狩獵日誌官網，共用已驗證週結與物種資料，自動產生頻道；本輪僅完成評估，尚未搬移或上線官網遊戲。詳見 [整合評估與發布時序](docs/b-route-integration-assessment-2026-10-23.md)。
+後續正式遊戲採 B 版棲地觀測方向。建議內建至 K 的狩獵日誌官網，共用已驗證週結與物種資料，自動產生頻道；已於 2026-10-23 依評估實作官網單一 B 主畫面及週結完成後的資料驅動擴站；正式庫存、測試與發布證據以官網 repo 的 `docs/journey.md` 及發布紀錄為準。詳見 [整合評估與發布時序](docs/b-route-integration-assessment-2026-10-23.md)。
 
 ## 下一步建議
 

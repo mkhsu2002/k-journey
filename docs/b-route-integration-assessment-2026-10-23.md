@@ -1,6 +1,6 @@
 # B 路線與 K 的狩獵日誌整合評估
 
-日期：2026-10-23（America/Vancouver）。狀態：已完成來源與正式環境查核，以下是建議設計，尚未搬移或發布官網遊戲功能。
+日期：2026-10-23（America/Vancouver）。狀態：歷史評估快照；作者同日核准後，已依此設計在 `mkhsu2002/neobabylon-0` 實作 `/journey/` 單一 B 主畫面。以下「建議／尚未實作」描述保留評估當時狀態，實際完成及正式驗證以官網 `docs/journey.md` 與 `docs/journey-release-2026-10-23.json` 為準。
 
 ## 結論
 
