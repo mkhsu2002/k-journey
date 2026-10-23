@@ -82,7 +82,11 @@ npx wrangler pages deploy dist --project-name k-journey --branch main
 
 部署憑證應由 macOS Keychain 或部署平台安全儲存按需注入，不得寫入 repository。`scripts/build.cjs` 只將四個 HTML 與 `assets/` 複製到 `dist/`，不會公開 README、測試、開發依賴或部署設定。此站沒有後端、環境變數、資料庫或 migration。
 
-目前使用本機直接部署，推送 GitHub 不會自動更新 Cloudflare。後續內容修改須通過測試、推送 main，再執行部署並確認 Cloudflare 部署成功；核對首頁、三頁、全部素材內容雜湊、影音 Content-Type 及 Range 請求。實機影音及明信片下載仍須人工測試。
+`main` 的網站內容、素材、建置／驗證腳本、依賴或部署設定更新後，由 `.github/workflows/cloudflare-pages.yml` 自動執行測試、建置、Cloudflare 發布及正式站驗證。README、`docs/`、handoff、audit、tracker 等純文件變更不在 paths 白名單，不啟動此 workflow；沒有 cron 或手動喚醒入口。部署以 concurrency 序列化。
+
+GitHub Actions Secrets 使用 `CLOUDFLARE_ACCOUNT_ID` 與 `CLOUDFLARE_API_TOKEN`。專用 token 僅有目標帳號的 Pages Write 權限，不沿用本機管理 token；Cloudflare 此權限是帳號層級，並非單一 Pages project 隔離。憑證只注入部署及 API 回讀步驟。
+
+`python3 scripts/verify-deployment.py` 比對四頁與全部媒體的 SHA-256；CI 額外核對 Cloudflare production canonical deployment 的 main commit 與成功狀態，失敗則整次 workflow 標紅。可在本機完成 `npm run build` 後執行此指令核對公開檔案。影音 Content-Type、Range 與手機實機下載另見部署紀錄；自動驗證不宣稱涵蓋實機操作。
 
 本次正式部署與驗證結果見 [部署紀錄](docs/deployment.md)。
 
